@@ -1,11 +1,16 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/jobs', [JobController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('jobs.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
