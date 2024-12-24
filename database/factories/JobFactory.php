@@ -18,7 +18,7 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
-            'employer_id' => Employer::factory(),
+            'employer_id' => fn () => Employer::all()->random()->id,
             'title' => fake()->jobTitle(),
             'salary' => '$'.number_format(fake()->numberBetween(10000, 100000), 2),
         ];
