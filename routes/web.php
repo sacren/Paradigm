@@ -12,6 +12,10 @@ Route::get('/jobs', [JobController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('jobs.index');
 
+Route::get('/jobs/{job}', [JobController::class, 'show'])
+    ->middleware(['auth', 'verified'])
+    ->name('jobs.show');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
