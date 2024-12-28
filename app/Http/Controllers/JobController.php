@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employer;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,13 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Job::create([
+            'title' => $request->title,
+            'salary' => $request->salary,
+            'employer_id' => Employer::inRandomOrder()->first()->id,
+        ]);
+
+        return redirect()->route('jobs.index');
     }
 
     /**

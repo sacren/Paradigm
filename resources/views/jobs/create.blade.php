@@ -7,7 +7,8 @@
         Create Job
     </x-slot:header>
 
-    <form>
+    <form method="POST" action="{{ route('jobs.store') }}">
+        @csrf
         <div class="space-y-12">
             <section class="border-b border-gray-200 pb-12">
                 <h2 class="text-lg font-medium text-gray-900">Create a new job</h2>
@@ -46,7 +47,9 @@
                     <button
                         type="button"
                         class="rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                        Cancel
+                        <a href="{{ route('jobs.index') }}">
+                            Cancel
+                        </a>
                     </button>
                     <button
                         type="submit"

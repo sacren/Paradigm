@@ -16,6 +16,10 @@ Route::get('/jobs/create', [JobController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('jobs.create');
 
+Route::post('/jobs', [JobController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('jobs.store');
+
 Route::get('/jobs/{job}', [JobController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('jobs.show');
