@@ -24,8 +24,12 @@
                                 id="title"
                                 class="block w-full rounded-md shadow-sm ring-1 ring-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:max-w-md sm:text-sm"
                                 placeholder="e.g., Petroleum Technician"
+                                required
                             />
                         </div>
+                        @error('title')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-4">
@@ -37,8 +41,12 @@
                                 id="salary"
                                 class="block w-full rounded-md shadow-sm ring-1 ring-gray-300 focus:ring-indigo-600 focus:border-indigo-600 sm:max-w-md sm:text-sm"
                                 placeholder="e.g., $187,000.00"
+                                required
                             />
                         </div>
+                        @error('salary')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 

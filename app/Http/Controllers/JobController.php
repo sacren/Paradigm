@@ -31,6 +31,23 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z0-9\s\-]+$/u',
+                'unique:job_listings,title',
+                'max:255',
+                'min:3',
+            ],
+
+            'salary' => [
+                'required',
+                'regex:/^\$\d{1,3}(,\d{3})*(\.\d{2})?$/',
+                'max:14',
+            ],
+        ]);
+
         Job::create([
             'title' => $request->title,
             'salary' => $request->salary,
