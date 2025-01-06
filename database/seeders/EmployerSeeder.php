@@ -16,11 +16,11 @@ class EmployerSeeder extends Seeder
         $users = User::all();
 
         if ($users->isEmpty()) {
-            $users->factory(7)->create();
+            $users->factory(10)->create();
             $users = User::all();
         }
 
-        Employer::factory(7)->create([
+        Employer::factory(10)->create([
             'user_id' => fn () => $users->random()->id,
         ]);
     }
