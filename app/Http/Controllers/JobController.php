@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employer;
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -48,10 +49,23 @@ class JobController extends Controller
             ],
         ]);
 
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($user->employers->isEmpty()) {
+            Employer::factory()->create([
+                'user_id' => $user->id,
+            ]);
+
+            $user->load('employers');
+        }
+
+        $employer = $user->employers->random();
+
         Job::create([
             'title' => $request->title,
             'salary' => $request->salary,
-            'employer_id' => Employer::inRandomOrder()->first()->id,
+            'employer_id' => $employer->id,
         ]);
 
         return redirect()->route('jobs.index');
