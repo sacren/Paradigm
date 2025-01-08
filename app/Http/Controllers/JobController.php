@@ -99,7 +99,26 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        //
+        $validated = $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'regex:/^[a-zA-Z0-9\s-]+$/u',
+                'min:3',
+                'max:255',
+            ],
+            'salary' => [
+                'required',
+                'regex:/^\$\d{1,3}(,\d{3})*(\.\d{2})?$/',
+                'max:14',
+            ],
+        ]);
+
+        $job->update($validated);
+
+        return redirect()
+            ->route('jobs.index')
+            ->with('success', 'Job updated successfully');
     }
 
     /**
