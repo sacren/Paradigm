@@ -24,6 +24,10 @@ Route::get('/jobs/{job}', [JobController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('jobs.show');
 
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])
+    ->middleware(['auth', 'verified'])
+    ->name('jobs.edit');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
