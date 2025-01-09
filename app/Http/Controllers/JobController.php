@@ -126,6 +126,11 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        $message = $job->title . ' job deleted successfully';
+        $job->delete();
+
+        return redirect()
+            ->route('jobs.index')
+            ->with('success', $message);
     }
 }
