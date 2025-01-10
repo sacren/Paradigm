@@ -17,9 +17,12 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('jobs.index', [
-            'jobs' => Job::with('employer')->latest()->paginate(3),
-        ]);
+        return view(
+            view: 'jobs.index',
+            data: [
+                'jobs' => Job::with('employer')->latest()->paginate(3),
+            ]
+        );
     }
 
     /**
@@ -27,7 +30,9 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('jobs.create');
+        return view(
+            view: 'jobs.create'
+        );
     }
 
     /**
@@ -44,7 +49,6 @@ class JobController extends Controller
                 'max:255',
                 'min:3',
             ],
-
             'salary' => [
                 'required',
                 'regex:/^\$\d{1,3}(,\d{3})*(\.\d{2})?$/',
@@ -79,9 +83,12 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        return view('jobs.show', [
-            'job' => $job,
-        ]);
+        return view(
+            view: 'jobs.show',
+            data: [
+                'job' => $job,
+            ]
+        );
     }
 
     /**
