@@ -17,11 +17,11 @@ class JobController extends Controller
      */
     public function index()
     {
+        $jobs = Job::with('employer')->latest()->paginate(3);
+
         return view(
             view: 'jobs.index',
-            data: [
-                'jobs' => Job::with('employer')->latest()->paginate(3),
-            ]
+            data: compact('jobs')
         );
     }
 
@@ -85,9 +85,7 @@ class JobController extends Controller
     {
         return view(
             view: 'jobs.show',
-            data: [
-                'job' => $job,
-            ]
+            data: compact('job')
         );
     }
 
@@ -99,10 +97,8 @@ class JobController extends Controller
         $this->authorize('update', $job);
 
         return view(
-            view:'jobs.edit',
-            data: [
-                'job' => $job,
-            ]
+            view: 'jobs.edit',
+            data: compact('job')
         );
     }
 
