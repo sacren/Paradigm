@@ -27,3 +27,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::fallback(fn () => abort(404));
